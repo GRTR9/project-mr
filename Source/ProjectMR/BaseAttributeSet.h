@@ -13,6 +13,8 @@ GAMEPLAYATTRIBUTE_VALUE_GETTER(PropertyName) \
 GAMEPLAYATTRIBUTE_VALUE_SETTER(PropertyName) \
 GAMEPLAYATTRIBUTE_VALUE_INITTER(PropertyName)
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnAttributeInit, const float&, Value);
+
 /**
  *
  */
@@ -29,45 +31,45 @@ public:
 	FGameplayAttributeData Health;
 	ATTRIBUTE_ACCESSORS(UBaseAttributeSet, Health)
 
-		//MaxHealth
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BaseAttributeSet")
+	//MaxHealth
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BaseAttributeSet")
 	FGameplayAttributeData MaxHealth;
 	ATTRIBUTE_ACCESSORS(UBaseAttributeSet, MaxHealth)
 
-		//Attack
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BaseAttributeSet")
+	//Attack
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BaseAttributeSet")
 	FGameplayAttributeData Attack;
 	ATTRIBUTE_ACCESSORS(UBaseAttributeSet, Attack)
 
-		//Defense
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BaseAttributeSet")
+	//Defense
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BaseAttributeSet")
 	FGameplayAttributeData Defense;
 	ATTRIBUTE_ACCESSORS(UBaseAttributeSet, Defense)
 
-		//Speed
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BaseAttributeSet")
+	//Speed
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BaseAttributeSet")
 	FGameplayAttributeData Speed;
 	ATTRIBUTE_ACCESSORS(UBaseAttributeSet, Speed)
 
-		//Avoid Rate (Max is 100%)
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BaseAttributeSet")
+	//Avoid Rate (Max is 100%)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BaseAttributeSet")
 	FGameplayAttributeData AvoidRate;
 	ATTRIBUTE_ACCESSORS(UBaseAttributeSet, AvoidRate)
 
-		//Crit Rate (Max is 100%)
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BaseAttributeSet")
+	//Crit Rate (Max is 100%)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BaseAttributeSet")
 	FGameplayAttributeData CritRate;
 	ATTRIBUTE_ACCESSORS(UBaseAttributeSet, CritRate)
 
-		//Crit Damage
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BaseAttributeSet")
+	//Crit Damage
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BaseAttributeSet")
 	FGameplayAttributeData CritDamage;
 	ATTRIBUTE_ACCESSORS(UBaseAttributeSet, CritDamage)
 
-		//Break Defense
-		UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BaseAttributeSet")
+	//Break Defense
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BaseAttributeSet")
 	FGameplayAttributeData BreakDefense;
 	ATTRIBUTE_ACCESSORS(UBaseAttributeSet, BreakDefense)
 
-		void PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData& Data) override;
+	void PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData& Data) override;
 };

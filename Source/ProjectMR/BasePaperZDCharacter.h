@@ -7,6 +7,9 @@
 #include "AbilitySystemComponent.h"
 #include "AbilitySystemInterface.h"
 #include "Abilities/GameplayAbility.h"
+#include "GameplayTagContainer.h"
+#include "Engine/DataTable.h"
+#include "UObject/NoExportTypes.h"
 #include "BasePaperZDCharacter.generated.h"
 
 /**
@@ -24,6 +27,30 @@ protected:
 	virtual void BeginPlay() override;
 
 public:
+	// Integer ID
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "BasePaperZDCharacter")
+	int32 ID;
+
+	// Gameplay Tag
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "BasePaperZDCharacter")
+	FGameplayTag Tag;
+
+	// Name (Text)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "BasePaperZDCharacter")
+	FText Name;
+
+	// Attribute DataTable
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "BasePaperZDCharacter")
+	UDataTable* DT_Attribute;
+
+	// Weight (Float)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "BasePaperZDCharacter")
+	float Weight;
+
+	// Icon (Texture2D)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "BasePaperZDCharacter")
+	UTexture2D* Icon;
+
 	//GAS
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "BasePaperZDCharacter")
 	UAbilitySystemComponent* AbilitySystemComp;

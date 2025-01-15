@@ -3,6 +3,7 @@
 
 #include "BasePaperZDCharacter.h"
 #include "BaseAttributeSet.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 ABasePaperZDCharacter::ABasePaperZDCharacter()
 {
@@ -50,6 +51,8 @@ void ABasePaperZDCharacter::OnDenseChangeNative(const FOnAttributeChangeData& Da
 
 void ABasePaperZDCharacter::OnSpeedChangeNative(const FOnAttributeChangeData& Data)
 {
+	UCharacterMovementComponent* CharMoveComp = Cast<UCharacterMovementComponent>(GetCharacterMovement());
+	CharMoveComp->MaxWalkSpeed = Data.NewValue;
 	OnSpeedChange(Data.OldValue, Data.NewValue);
 }
 
