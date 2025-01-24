@@ -9,7 +9,15 @@ ABasePaperZDCharacter::ABasePaperZDCharacter()
 {
 	//GAS
 	AbilitySystemComp = CreateDefaultSubobject<UAbilitySystemComponent>(TEXT("AbilitySystemComp"));
-	BaseAttributeSetComp = CreateDefaultSubobject<UBaseAttributeSet>(TEXT("BaseAttributeSetComp"));
+}
+
+void ABasePaperZDCharacter::PostInitializeComponents()
+{
+	Super::PostInitializeComponents();
+	if (AbilitySystemComp)
+	{
+		BaseAttributeSetComp = AbilitySystemComp->AddSet<UBaseAttributeSet>();
+	}
 }
 
 void ABasePaperZDCharacter::BeginPlay()

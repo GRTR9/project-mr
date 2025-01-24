@@ -9,47 +9,89 @@ UBaseAttributeSet::UBaseAttributeSet()
 {
 }
 
-void UBaseAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data)
+void UBaseAttributeSet::PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue)
 {
-	Super::PostGameplayEffectExecute(Data);
+	Super::PreAttributeChange(Attribute, NewValue);
 
-	if (Data.EvaluatedData.Attribute == GetHealthAttribute())
+	if (Attribute == GetHealthAttribute())
 	{
-		SetHealth(FMath::Clamp(GetHealth(), 0.0f, GetMaxHealth()));
+		NewValue = FMath::Clamp(NewValue, 0.0f, GetMaxHealth());
 	}
-
-	if (Data.EvaluatedData.Attribute == GetAttackAttribute())
+	else if (Attribute == GetMaxHealthAttribute())
 	{
-		SetAttack(GetAttack());
+		NewValue = FMath::Max(NewValue, 0.0f);
 	}
-
-	if (Data.EvaluatedData.Attribute == GetDefenseAttribute())
+	else if (Attribute == GetAttackAttribute())
 	{
-		SetDefense(GetDefense());
+		NewValue = FMath::Max(NewValue, 0.0f);
 	}
-
-	if (Data.EvaluatedData.Attribute == GetSpeedAttribute())
+	else if (Attribute == GetDefenseAttribute())
 	{
-		SetSpeed(GetSpeed());
+		NewValue = FMath::Max(NewValue, 0.0f);
 	}
-
-	if (Data.EvaluatedData.Attribute == GetAvoidRateAttribute())
+	else if (Attribute == GetSpeedAttribute())
 	{
-		SetAvoidRate(FMath::Clamp(GetAvoidRate(), 0.0f, 100.0f));
+		NewValue = FMath::Max(NewValue, 0.0f);
 	}
-
-	if (Data.EvaluatedData.Attribute == GetCritRateAttribute())
+	else if (Attribute == GetAvoidRateAttribute())
 	{
-		SetCritRate(FMath::Clamp(GetCritRate(), 0.0f, 100.0f));
+		NewValue = FMath::Clamp(NewValue, 0.0f, 100.0f);
 	}
-
-	if (Data.EvaluatedData.Attribute == GetCritDamageAttribute())
+	else if (Attribute == GetCritRateAttribute())
 	{
-		SetCritDamage(GetCritDamage());
+		NewValue = FMath::Clamp(NewValue, 0.0f, 100.0f);
 	}
-
-	if (Data.EvaluatedData.Attribute == GetBreakDefenseAttribute())
+	else if (Attribute == GetCritDamageAttribute())
 	{
-		SetBreakDefense(GetBreakDefense());
+		NewValue = FMath::Max(NewValue, 0.0f);
+	}
+	else if (Attribute == GetBreakDefenseAttribute())
+	{
+		NewValue = FMath::Max(NewValue, 0.0f);
 	}
 }
+
+//void UBaseAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data)
+//{
+//	Super::PostGameplayEffectExecute(Data);
+//
+//	if (Data.EvaluatedData.Attribute == GetHealthAttribute())
+//	{
+//		SetHealth(FMath::Clamp(GetHealth(), 0.0f, GetMaxHealth()));
+//	}
+//
+//	if (Data.EvaluatedData.Attribute == GetAttackAttribute())
+//	{
+//		SetAttack(FMath::Max(GetAttack(), 0.0f));
+//	}
+//
+//	if (Data.EvaluatedData.Attribute == GetDefenseAttribute())
+//	{
+//		SetDefense(FMath::Max(GetDefense(), 0.0f));
+//	}
+//
+//	if (Data.EvaluatedData.Attribute == GetSpeedAttribute())
+//	{
+//		SetSpeed(FMath::Max(GetSpeed(), 0.0f));
+//	}
+//
+//	if (Data.EvaluatedData.Attribute == GetAvoidRateAttribute())
+//	{
+//		SetAvoidRate(FMath::Clamp(GetAvoidRate(), 0.0f, 100.0f));
+//	}
+//
+//	if (Data.EvaluatedData.Attribute == GetCritRateAttribute())
+//	{
+//		SetCritRate(FMath::Clamp(GetCritRate(), 0.0f, 100.0f));
+//	}
+//
+//	if (Data.EvaluatedData.Attribute == GetCritDamageAttribute())
+//	{
+//		SetCritDamage(FMath::Max(GetCritDamage(), 0.0f));
+//	}
+//
+//	if (Data.EvaluatedData.Attribute == GetBreakDefenseAttribute())
+//	{
+//		SetBreakDefense(FMath::Max(GetBreakDefense(), 0.0f));
+//	}
+//}

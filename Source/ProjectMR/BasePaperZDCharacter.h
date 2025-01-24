@@ -24,6 +24,8 @@ public:
 	ABasePaperZDCharacter();
 
 protected:
+	virtual void PostInitializeComponents() override;
+
 	virtual void BeginPlay() override;
 
 public:
@@ -59,7 +61,7 @@ public:
 
 	//Declare BaseAttributeSetComp
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "BasePaperZDCharacter")
-	class UBaseAttributeSet* BaseAttributeSetComp;
+	const class UBaseAttributeSet* BaseAttributeSetComp;
 
 	//On Attribute Change
 	void OnHealthChangeNative(const FOnAttributeChangeData& Data);

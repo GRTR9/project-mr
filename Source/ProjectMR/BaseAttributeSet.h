@@ -13,8 +13,6 @@ GAMEPLAYATTRIBUTE_VALUE_GETTER(PropertyName) \
 GAMEPLAYATTRIBUTE_VALUE_SETTER(PropertyName) \
 GAMEPLAYATTRIBUTE_VALUE_INITTER(PropertyName)
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnAttributeInit, const float&, Value);
-
 /**
  *
  */
@@ -71,5 +69,8 @@ public:
 	FGameplayAttributeData BreakDefense;
 	ATTRIBUTE_ACCESSORS(UBaseAttributeSet, BreakDefense)
 
-	void PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData& Data) override;
+protected:
+	virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override;
+
+	//void PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData& Data) override;
 };
